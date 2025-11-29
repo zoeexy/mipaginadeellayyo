@@ -1,3 +1,23 @@
+// Mostrar mensaje de bienvenida solo la primera vez
+if (!localStorage.getItem('visited')) {
+  document.getElementById('welcomeModal').classList.add('active');
+  localStorage.setItem('visited', 'true');
+}
+document.getElementById('closeWelcome').onclick = () => {
+  document.getElementById('welcomeModal').classList.remove('active');
+};
+
+// Corazones al hacer click en cualquier parte
+document.addEventListener('click', function(e) {
+  const heart = document.createElement('div');
+  heart.classList.add('heart-click');
+  heart.innerHTML = '♥';
+  heart.style.left = (e.clientX - 20) + 'px';
+  heart.style.top = (e.clientY - 20) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 3000);
+});
+
 // Menú móvil
 document.getElementById('menuBtn').onclick = () => {
   document.getElementById('sideMenu').classList.toggle('active');
@@ -16,7 +36,7 @@ document.querySelectorAll('.side-menu li').forEach(item => {
   };
 });
 
-// Mensajes
+// Mensajes Firebase
 db.limitToLast(50).on('child_added', snap => {
   const m = snap.val();
   const div = document.createElement('div');

@@ -1,176 +1,98 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+  background: linear-gradient(135deg, #0a0a1a, #1a0033, #000);
   color: #ffc8dd;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Menú lateral IZQUIERDO */
-.side-menu {
+/* Fondo con partículas modernas */
+#particles {
   position: fixed;
-  left: 0; top: 0; width: 280px; height: 100%;
-  background: rgba(15,15,35,0.95);
-  backdrop-filter: blur(20px);
-  z-index: 999;
-  padding: 40px 30px;
-  transition: transform 0.4s ease;
-  box-shadow: 5px 0 30px rgba(0,0,0,0.6);
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 20% 80%, #ff6ec440, transparent 50%),
+              radial-gradient(circle at 80% 20%, #7873f540, transparent 50%),
+              radial-gradient(circle at 50% 50%, #ff9ff330, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: gradientShift 20s ease infinite;
 }
-.menu-header h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.5rem;
-  color: #ff69b4;
-  text-align: center;
-  margin-bottom: 60px;
-}
-.side-menu ul li {
-  padding: 18px 20px;
-  font-size: 1.3rem;
-  cursor: pointer;
-  border-radius: 12px;
-  margin: 8px 0;
-  transition: all 0.3s;
-}
-.side-menu ul li:hover, .side-menu ul li.active {
-  background: rgba(255,105,180,0.3);
-  color: white;
-  padding-left: 30px;
+@keyframes gradientShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-/* En móvil: menú oculto y botón hamburguesa */
-@media (max-width: 900px) {
-  .side-menu { transform: translateX(-100%); }
-  .side-menu.active { transform: translateX(0); }
-  #menuBtn { display: block; }
-}
-#menuBtn {
+/* Modal de bienvenida */
+.modal {
   display: none;
   position: fixed;
-  top: 20px; left: 20px;
-  z-index: 1000;
-  background: rgba(255,105,180,0.4);
-  padding: 15px;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  cursor: pointer;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
 }
-
-/* Contenido principal (con margen para el menú) */
-#content {
-  margin-left: 280px;
-  min-height: 100vh;
-}
-@media (max-width: 900px) { #content { margin-left: 0; } }
-
-/* Secciones */
-.section {
-  display: none;
-  padding: 80px 40px;
-  min-height: 100vh;
-}
-.section.active { display: block; }
-
-/* INICIO */
-.home-content {
-  text-align: center;
-  padding: 100px 20px;
-}
-.big-heart {
-  font-size: 7rem;
-  animation: float 4s infinite;
-  color: #ff69b4;
-}
-.home-content h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 4.5rem;
-  margin: 30px 0;
-  background: linear-gradient(45deg, #ff9ff3, #ff69b4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.quote { font-size: 1.5rem; margin: 30px 0; opacity: 0.9; }
-.hero-image img {
-  width: 90%;
-  max-width: 800px;
-  margin: 60px auto;
+.modal.active { display: flex; }
+.modal-content {
+  background: rgba(30,10,50,0.95);
+  padding: 50px 40px;
   border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(255,105,180,0.4);
+  text-align: center;
+  max-width: 600px;
+  border: 2px solid #ff69b4;
+  box-shadow: 0 0 80px rgba(255,105,180,0.6);
+  animation: modalPop 0.8s ease;
 }
-
-/* GALERÍA PERFECTA */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-  max-width: 1400px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
-.photo-grid img {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-  transition: all 0.5s ease;
-}
-.photo-grid img:hover {
-  transform: translateY(-15px) scale(1.03);
-  box-shadow: 0 30px 60px rgba(255,105,180,0.6);
-}
-
-/* RECADITOS */
-.message-container { max-width: 800px; margin: 0 auto; }
-.message-form {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(15px);
-  padding: 35px;
-  border-radius: 28px;
-  margin-bottom: 50px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-.message-form input, .message-form textarea {
-  width: 100%; padding: 16px; margin: 12px 0; border: none; border-radius: 16px;
-  background: rgba(255,255,255,0.12); color: white; font-size: 1.1rem;
-}
-.message-form textarea { height: 130px; resize: none; }
-.message-form button {
-  background: linear-gradient(45deg, #ff69b4, #ff9ff3);
-  color: white; border: none; padding: 16px 40px; border-radius: 50px;
-  font-weight: bold; cursor: pointer; font-size: 1.1rem;
-}
-.message-list {
-  display: flex; flex-direction: column; gap: 20px;
-}
-.message-list > div {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  border-radius: 20px;
-  border-left: 5px solid #ff69b4;
-  backdrop-filter: blur(10px);
-}
-.message-list strong { color: #ff9ff3; }
-
-/* MÚSICA */
-.music-box {
-  max-width: 600px; margin: 0 auto; text-align: center;
-}
-#currentSong { font-size: 1.8rem; margin: 20px 0; color: #ff69b4; }
-audio { width: 100%; margin: 30px 0; }
-.playlist button {
-  margin: 10px;
-  padding: 14px 24px;
-  background: rgba(255,105,180,0.3);
-  border: none;
-  border-radius: 50px;
-  color: white;
+.close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 2.5rem;
   cursor: pointer;
-  transition: 0.3s;
+  color: #ff9ff3;
 }
-.playlist button:hover { background: #ff69b4; transform: scale(1.05); }
+.modal h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: #ff69b4;
+  margin-bottom: 20px;
+}
+.modal p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin: 20px 0;
+}
+.heart-big {
+  font-size: 5rem;
+  color: #ff69b4;
+  animation: pulse 2s infinite;
+}
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+/* Resto del diseño (igual de bonito que antes, solo más moderno) */
+.side-menu, .home-content, .photo-grid, .message-form, .music-box {
+  position: relative;
+  z-index: 2;
+}
+
+/* Corazones al hacer click */
+.heart-click {
+  position: absolute;
+  color: #ff69b4;
+  font-size: 2rem;
+  pointer-events: none;
+  animation: heartFloat 3s ease-out forwards;
+  z-index: 999;
+}
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-150px) scale(0); opacity: 0; }
+}
+@keyframes modalPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }

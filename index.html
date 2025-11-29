@@ -10,42 +10,51 @@
 </head>
 <body>
 
-  <!-- Menú lateral IZQUIERDO -->
+  <!-- Fondo con partículas (moderno 2025) -->
+  <div id="particles"></div>
+
+  <!-- Mensaje de bienvenida (solo la primera vez) -->
+  <div id="welcomeModal" class="modal">
+    <div class="modal-content">
+      <span id="closeWelcome" class="close">×</span>
+      <h2>¡Bienvenida a nuestro rinconcito, mi amor!</h2>
+      <p>Este lugar lo hice solo para ti ♡<br>
+         Aquí guardaremos nuestros recuerdos, mensajitos y todo nuestro amor aunque estemos lejos.<br><br>
+         Te amo más que ayer y menos que mañana.<br>
+         — Tu persona favorita en todo el universo</p>
+      <div class="heart-big">♥</div>
+    </div>
+  </div>
+
+  <!-- Menú lateral izquierdo -->
   <nav id="sideMenu" class="side-menu">
     <div class="menu-header">
       <h2>Nuestro amor</h2>
     </div>
     <ul>
-      <li data-section="home" class="active"><i class="fas fa-heart"></i> Inicio</li>
-      <li data-section="nosotros"><i class="fas fa-camera"></i> Nosotros</li>
-      <li data-section="recaditos"><i class="fas fa-envelope-heart"></i> Recaditos</li>
-      <li data-section="musica"><i class="fas fa-music"></i> Música</li>
+      <li data-section="home" class="active">Inicio</li>
+      <li data-section="nosotros">Nosotros</li>
+      <li data-section="recaditos">Recaditos</li>
+      <li data-section="musica">Música</li>
     </ul>
   </nav>
 
-  <!-- Botón hamburguesa (solo visible en móvil) -->
-  <div id="menuBtn" class="menu-btn">
-    <i class="fas fa-bars"></i>
-  </div>
+  <div id="menuBtn" class="menu-btn">Menu</div>
 
-  <!-- Contenido -->
   <main id="content">
-
     <!-- INICIO -->
     <section id="home" class="section active">
       <div class="home-content">
         <div class="big-heart">♥</div>
         <h1>Para ti, mi vida entera</h1>
-        <p class="quote">Aunque estemos a kilómetros, mi corazón late contigo cada segundo ♡</p>
-        
-        <!-- AQUÍ VA TU FOTO GRANDE (cámbiala por la tuya) -->
+        <p class="quote">Aunque estemos a kilómetros, aquí siempre estamos juntitos ♡</p>
         <div class="hero-image">
-          <img src="img/hero.jpg" alt="Nuestra foto grande"> <!-- ← PON AQUÍ TU FOTO FAVORITA -->
+          <img src="img/hero.jpg" alt="Nuestra foto grande">
         </div>
       </div>
     </section>
 
-    <!-- NOSOTROS (fotos en cuadrícula perfecta) -->
+    <!-- NOSOTROS -->
     <section id="nosotros" class="section">
       <h2>Nuestros momentos más bonitos</h2>
       <div class="photo-grid">
@@ -53,7 +62,6 @@
         <img src="img/nosotros2.png" alt="">
         <img src="img/tuuu.png" alt="">
         <img src="img/nosotros1.png" alt="">
-        <!-- Añade todas las que quieras -->
       </div>
     </section>
 
@@ -62,7 +70,7 @@
       <h2>Recaditos de amor</h2>
       <div class="message-container">
         <div class="message-form">
-          <input type="text" id="nameInput" placeholder="Tu nombre lindo" value="Mi amor">
+          <input type="text" id="nameInput" placeholder="Tu nombre lindo ♡" value="Mi amor">
           <textarea id="messageInput" placeholder="Escribe lo que sientas hoy..."></textarea>
           <button id="sendMessage">Enviar corazoncito</button>
         </div>
@@ -85,7 +93,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Firebase -->
