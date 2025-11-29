@@ -10,27 +10,22 @@
 </head>
 <body>
 
-  <!-- Fondo con partículas (moderno 2025) -->
+  <!-- Fondo partículas -->
   <div id="particles"></div>
 
-  <!-- Mensaje de bienvenida (solo la primera vez) -->
+  <!-- Mensaje bienvenida -->
   <div id="welcomeModal" class="modal">
     <div class="modal-content">
       <span id="closeWelcome" class="close">×</span>
       <h2>¡Bienvenida a nuestro rinconcito, mi amor!</h2>
-      <p>Este lugar lo hice solo para ti ♡<br>
-         Aquí guardaremos nuestros recuerdos, mensajitos y todo nuestro amor aunque estemos lejos.<br><br>
-         Te amo más que ayer y menos que mañana.<br>
-         — Tu persona favorita en todo el universo</p>
+      <p>Este lugar lo hice solo para ti ♡<br>Aquí guardaremos nuestros recuerdos, mensajitos y todo nuestro amor aunque estemos lejos.<br><br>Te amo más que ayer y menos que mañana.<br>— Tu persona favorita</p>
       <div class="heart-big">♥</div>
     </div>
   </div>
 
-  <!-- Menú lateral izquierdo -->
+  <!-- Menú izquierdo -->
   <nav id="sideMenu" class="side-menu">
-    <div class="menu-header">
-      <h2>Nuestro amor</h2>
-    </div>
+    <div class="menu-header"><h2>Nuestro amor</h2></div>
     <ul>
       <li data-section="home" class="active">Inicio</li>
       <li data-section="nosotros">Nosotros</li>
@@ -41,34 +36,34 @@
 
   <div id="menuBtn" class="menu-btn">Menu</div>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main id="content">
-    <!-- INICIO -->
     <section id="home" class="section active">
       <div class="home-content">
         <div class="big-heart">♥</div>
         <h1>Para ti, mi vida entera</h1>
         <p class="quote">Aunque estemos a kilómetros, aquí siempre estamos juntitos ♡</p>
         <div class="hero-image">
-          <img src="img/hero.jpg" alt="Nuestra foto grande">
+          <img src="img/hero.jpg" id="heroImg" alt="Nuestra foto grande">
         </div>
       </div>
     </section>
 
-    <!-- NOSOTROS -->
     <section id="nosotros" class="section">
-      <h2>Nuestros momentos más bonitos</h2>
-      <div class="photo-grid">
-        <img src="img/nosotros.png" alt="">
-        <img src="img/nosotros2.png" alt="">
-        <img src="img/tuuu.png" alt="">
-        <img src="img/nosotros1.png" alt="">
+      <div class="container">
+        <h2>Nuestros momentos más bonitos</h2>
+        <div class="photo-grid">
+          <img src="img/nosotros.png" alt="">
+          <img src="img/nosotros2.png" alt="">
+          <img src="img/tuuu.png" alt="">
+          <img src="img/nosotros1.png" alt="">
+        </div>
       </div>
     </section>
 
-    <!-- RECADITOS -->
     <section id="recaditos" class="section">
-      <h2>Recaditos de amor</h2>
-      <div class="message-container">
+      <div class="container">
+        <h2>Recaditos de amor</h2>
         <div class="message-form">
           <input type="text" id="nameInput" placeholder="Tu nombre lindo ♡" value="Mi amor">
           <textarea id="messageInput" placeholder="Escribe lo que sientas hoy..."></textarea>
@@ -78,36 +73,29 @@
       </div>
     </section>
 
-    <!-- MÚSICA -->
     <section id="musica" class="section">
-      <h2>Nuestra banda sonora</h2>
-      <div class="music-box">
-        <p id="currentSong">Eternal Love ♪</p>
-        <audio id="mainAudio" controls autoplay loop>
-          <source src="https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3" type="audio/mpeg">
-        </audio>
-        <div class="playlist">
-          <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3','Eternal Love')">Eternal Love</button>
-          <button onclick="play('https://www.bensound.com/bensound-music/bensound-romantic.mp3','Romantic Evening')">Romantic Evening</button>
-          <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-OUR-STORY.mp3','Our Story')">Our Story</button>
+      <div class="container">
+        <h2>Nuestra banda sonora</h2>
+        <div class="music-box">
+          <p id="currentSong">Eternal Love ♪</p>
+          <audio id="mainAudio" controls autoplay loop>
+            <source src="https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3" type="audio/mpeg">
+          </audio>
+          <div class="playlist">
+            <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3','Eternal Love')">Eternal Love</button>
+            <button onclick="play('https://www.bensound.com/bensound-music/bensound-romantic.mp3','Romantic Evening')">Romantic Evening</button>
+            <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-OUR-STORY.mp3','Our Story')">Our Story</button>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Firebase -->
+  <!-- Firebase + script -->
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAu4QiCYOXhUfyJQyU950FbEqaPgVOvAAM",
-      authDomain: "nuestroamoreterno-cfda7.firebaseapp.com",
-      databaseURL: "https://nuestroamoreterno-cfda7-default-rtdb.firebaseio.com",
-      projectId: "nuestroamoreterno-cfda7",
-      storageBucket: "nuestroamoreterno-cfda7.firebasestorage.app",
-      messagingSenderId: "57740135960",
-      appId: "1:57740135960:web:a976cef79bcc265d1ffd6d"
-    };
+    const firebaseConfig = { apiKey: "AIzaSyAu4QiCYOXhUfyJQyU950FbEqaPgVOvAAM", authDomain: "nuestroamoreterno-cfda7.firebaseapp.com", databaseURL: "https://nuestroamoreterno-cfda7-default-rtdb.firebaseio.com", projectId: "nuestroamoreterno-cfda7", storageBucket: "nuestroamoreterno-cfda7.firebasestorage.app", messagingSenderId: "57740135960", appId: "1:57740135960:web:a976cef79bcc265d1ffd6d" };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database().ref("messages");
   </script>

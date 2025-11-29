@@ -1,4 +1,4 @@
-// Mostrar mensaje de bienvenida solo la primera vez
+// Bienvenida solo primera vez
 if (!localStorage.getItem('visited')) {
   document.getElementById('welcomeModal').classList.add('active');
   localStorage.setItem('visited', 'true');
@@ -7,56 +7,39 @@ document.getElementById('closeWelcome').onclick = () => {
   document.getElementById('welcomeModal').classList.remove('active');
 };
 
-// Corazones al hacer click en cualquier parte
-document.addEventListener('click', function(e) {
-  const heart = document.createElement('div');
-  heart.classList.add('heart-click');
-  heart.innerHTML = '♥';
-  heart.style.left = (e.clientX - 20) + 'px';
-  heart.style.top = (e.clientY - 20) + 'px';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 3000);
+// Corazones al click
+document.addEventListener('click', e => {
+  const h = document.createElement('div');
+  h.className = 'heart-click';
+  h.innerHTML = '♥';
+  h.style.left = (e.clientX - 20) + 'px';
+  h.style.top = (e.clientY - 20) + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 3000);
 });
 
-// Menú móvil
-document.getElementById('menuBtn').onclick = () => {
-  document.getElementById('sideMenu').classList.toggle('active');
-};
-
-// Cambiar secciones
+// Menú móvil y secciones (igual que antes)
+document.getElementById('menuBtn').onclick = () => document.getElementById('sideMenu').classList.toggle('active');
 document.querySelectorAll('.side-menu li').forEach(item => {
   item.onclick = () => {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.side-menu li').forEach(li => li.classList.remove('active'));
     document.getElementById(item.dataset.section).classList.add('active');
     item.classList.add('active');
-    if(window.innerWidth <= 900) {
-      document.getElementById('sideMenu').classList.remove('active');
-    }
+    if(window.innerWidth <= 900) document.getElementById('sideMenu').classList.remove('active');
   };
 });
 
-// Mensajes Firebase
-db.limitToLast(50).on('child_added', snap => {
-  const m = snap.val();
-  const div = document.createElement('div');
-  div.innerHTML = `<strong>${m.name} ♡</strong><p>${m.text.replace(/\n/g,'<br>')}</p><small>${new Date(m.date).toLocaleString('es-ES')}</small>`;
-  document.getElementById('messageList').prepend(div);
+// Mensajes + música (igual que antes)
+db.limitToLast(50).on('child_added', s => {
+  const m = s.val();
+  const d = document.createElement('div');
+  d.innerHTML = `<strong>${m.name} ♡</strong><p>${m.text.replace(/\n/g,'<br>')}</p><small>${new Date(m.date).toLocaleString('es-ES')}</small>`;
+  document.getElementById('messageList').prepend(d);
 });
-
 document.getElementById('sendMessage').onclick = () => {
-  const name = document.getElementById('nameInput').value.trim() || "Amor";
-  const text = document.getElementById('messageInput').value.trim();
-  if(text) {
-    db.push({name, text, date: Date.now()});
-    document.getElementById('messageInput').value = "";
-  }
+  const n = document.getElementById('nameInput').value.trim() || "Amor";
+  const t = document.getElementById('messageInput').value.trim();
+  if(t) { db.push({name:n, text:t, date:Date.now()}); document.getElementById('messageInput').value = ""; }
 };
-
-// Música
-function play(url, title) {
-  const audio = document.getElementById('mainAudio');
-  audio.src = url;
-  audio.play();
-  document.getElementById('currentSong').textContent = title + " ♪";
-}
+function play(u,t){ const a=document.getElementById('mainAudio'); a.src=u; a.play(); document.getElementById('currentSong').textContent=t+" ♪"; }
