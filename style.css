@@ -1,7 +1,6 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Poppins',sans-serif; background:#0a0a1a; color:#ffc8dd; overflow-x:hidden; position:relative; min-height:100vh; }
 
-/* Fondo moderno */
 #particles {
   position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;
   background: radial-gradient(circle at 20% 80%, #ff6ec440, transparent 50%),
@@ -10,44 +9,40 @@ body { font-family:'Poppins',sans-serif; background:#0a0a1a; color:#ffc8dd; over
 }
 @keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
-/* Contenedor general (da espacio bonito) */
 .container { max-width:1400px; margin:0 auto; padding:40px 20px; }
 
-/* Menú izquierdo */
 .side-menu { position:fixed; left:0; top:0; width:280px; height:100%; background:rgba(15,15,35,0.98); backdrop-filter:blur(20px); z-index:999; padding:40px 30px; box-shadow:5px 0 30px rgba(0,0,0,0.7); transition:transform .4s; }
 .menu-header h2 { font-family:'Dancing Script',cursive; font-size:2.8rem; color:#ff69b4; text-align:center; margin-bottom:60px; }
 .side-menu ul li { padding:18px 20px; font-size:1.3rem; cursor:pointer; border-radius:12px; margin:10px 0; transition:.3s; }
 .side-menu ul li:hover, .side-menu ul li.active { background:rgba(255,105,180,0.3); color:white; padding-left:30px; }
 
-/* Botón menú móvil */
 #menuBtn { display:none; position:fixed; top:20px; left:20px; z-index:1000; background:rgba(255,105,180,0.4); padding:15px; border-radius:50%; font-size:1.8rem; cursor:pointer; }
 
-/* Contenido principal */
 #content { margin-left:280px; min-height:100vh; }
 @media (max-width:900px) {
-  .side-menu { transform:translateX(-100%); }
+  .side-menu { transform:translateX(-100%);}
   .side-menu.active { transform:translateX(0); }
   #menuBtn { display:block; }
   #content { margin-left:0; }
 }
 
-/* Secciones */
 .section { display:none; min-height:100vh; padding:80px 0; }
 .section.active { display:block; }
 
-/* Inicio */
 .home-content { text-align:center; padding:100px 20px 0; }
 .big-heart { font-size:7rem; color:#ff69b4; animation:pulse 2s infinite; }
 .home-content h1 { font-family:'Dancing Script',cursive; font-size:4.8rem; margin:30px 0; background:linear-gradient(45deg,#ff9ff3,#ff69b4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .quote { font-size:1.6rem; margin:40px 0; opacity:0.9; }
 .hero-image img { width:90%; max-width:900px; margin:80px auto; border-radius:30px; box-shadow:0 30px 70px rgba(255,105,180,0.4); display:block; }
 
-/* Galería */
-.photo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; margin:60px 0; }
+.upload-btn-container { text-align:center; margin:30px 0 50px; }
+.add-photo-btn { background:linear-gradient(45deg,#ff69b4,#ff9ff3); color:white; border:none; padding:16px 32px; border-radius:50px; font-size:1.2rem; cursor:pointer; box-shadow:0 10px 30px rgba(255,105,180,0.4); transition:.3s; }
+.add-photo-btn:hover { transform:translateY(-5px); box-shadow:0 20px 40px rgba(255,105,180,0.6); }
+
+.photo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; margin:40px 0; }
 .photo-grid img { width:100%; height:380px; object-fit:cover; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.6); transition:.5s; }
 .photo-grid img:hover { transform:translateY(-15px) scale(1.03); box-shadow:0 35px 70px rgba(255,105,180,0.6); }
 
-/* Recaditos */
 .message-form { background:rgba(255,255,255,0.08); backdrop-filter:blur(15px); padding:40px; border-radius:28px; margin-bottom:60px; box-shadow:0 20px 50px rgba(0,0,0,0.4); }
 .message-form input, .message-form textarea { width:100%; padding:18px; margin:15px 0; border:none; border-radius:16px; background:rgba(255,255,255,0.12); color:white; font-size:1.1rem; }
 .message-form textarea { height:140px; resize:none; }
@@ -55,14 +50,12 @@ body { font-family:'Poppins',sans-serif; background:#0a0a1a; color:#ffc8dd; over
 .message-list > div { background:rgba(255,255,255,0.08); padding:25px; border-radius:20px; margin-bottom:20px; border-left:5px solid #ff69b4; backdrop-filter:blur(10px); }
 .message-list strong { color:#ff9ff3; }
 
-/* Música */
 .music-box { background:rgba(255,255,255,0.08); backdrop-filter:blur(15px); padding:40px; border-radius:28px; text-align:center; }
 #currentSong { font-size:1.9rem; margin:20px 0; color:#ff69b4; }
 audio { width:100%; margin:30px 0; }
 .playlist button { margin:10px; padding:14px 28px; background:rgba(255,105,180,0.3); border:none; border-radius:50px; color:white; cursor:pointer; transition:.3s; }
 .playlist button:hover { background:#ff69b4; transform:scale(1.05); }
 
-/* Modal bienvenida */
 .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); backdrop-filter:blur(12px); z-index:9999; align-items:center; justify-content:center; }
 .modal.active { display:flex; }
 .modal-content { background:rgba(30,10,50,0.98); padding:60px 40px; border-radius:30px; text-align:center; max-width:600px; border:2px solid #ff69b4; box-shadow:0 0 100px rgba(255,105,180,0.7); position:relative; animation:modalPop .8s; }
@@ -70,7 +63,6 @@ audio { width:100%; margin:30px 0; }
 .modal h2 { font-family:'Dancing Script',cursive; font-size:3.2rem; color:#ff69b4; margin-bottom:20px; }
 .modal p { font-size:1.35rem; line-height:1.9; }
 
-/* Corazones al click */
 .heart-click { position:absolute; color:#ff69b4; font-size:2.2rem; pointer-events:none; z-index:999; animation:heartFloat 3s forwards; }
 @keyframes heartFloat { to { transform:translateY(-180px) scale(0); opacity:0; } }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }

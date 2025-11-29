@@ -1,9 +1,7 @@
-// Mensaje de bienvenida CADA VEZ que entra o recarga ♡
+// Mensaje de bienvenida CADA VEZ que entra
 window.addEventListener('load', () => {
   document.getElementById('welcomeModal').classList.add('active');
 });
-
-// Cerrar el mensaje
 document.getElementById('closeWelcome').onclick = () => {
   document.getElementById('welcomeModal').classList.remove('active');
 };
@@ -19,10 +17,39 @@ document.addEventListener('click', e => {
   setTimeout(() => h.remove(), 3000);
 });
 
-// Menú móvil
-document.getElementById('menuBtn').onclick = () => document.getElementById('sideMenu').classList.toggle('active');
+// SUBIR FOTOS GRATIS
+const photoGrid = document.getElementById('photoGrid');
 
-// Cambiar secciones
+document.getElementById('addPhotoBtn').onclick = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const uploadTask = storage.child('fotos/' + Date.now() + '_' + file.name).put(file);
+
+    uploadTask.on('state_changed', null, error => console.error(error), () => {
+      uploadTask.snapshot.ref.getDownloadURL().then(url => {
+        firebase.database().ref('galeria').push(url);
+      });
+    });
+  };
+  input.click();
+};
+
+// CARGAR FOTOS DE LA GALERÍA
+firebase.database().ref('galeria').on('child_added', snap => {
+  const url = snap.val();
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = "Nuestra foto";
+  photoGrid.prepend(img);
+});
+
+// Menú
+document.getElementById('menuBtn').onclick = () => document.getElementById('sideMenu').classList.toggle('active');
 document.querySelectorAll('.side-menu li').forEach(item => {
   item.onclick = () => {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -33,7 +60,7 @@ document.querySelectorAll('.side-menu li').forEach(item => {
   };
 });
 
-// Mensajes Firebase
+// Mensajes
 db.limitToLast(50).on('child_added', s => {
   const m = s.val();
   const d = document.createElement('div');
@@ -51,5 +78,5 @@ document.getElementById('sendMessage').onclick = () => {
 function play(u,t){ 
   const a = document.getElementById('mainAudio'); 
   a.src = u; a.play(); 
-  document.getElementById('currentSong').textContent = t + " ♪"; 
+  document.getElementById('currentSong').textContent = t + " "; 
 }
