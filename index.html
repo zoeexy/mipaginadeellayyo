@@ -3,85 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nuestro rinconcito ♥</title>
+  <title>Nuestro amor eterno ♥</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
 </head>
 <body>
 
-  <!-- Menú hamburguesa -->
-  <div id="menuBtn" class="menu-btn">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <!-- Menú lateral -->
+  <!-- Menú lateral IZQUIERDO -->
   <nav id="sideMenu" class="side-menu">
     <div class="menu-header">
       <h2>Nuestro amor</h2>
-      <i id="closeMenu" class="fas fa-times"></i>
     </div>
     <ul>
-      <li data-section="home"><i class="fas fa-heart"></i> Inicio</li>
+      <li data-section="home" class="active"><i class="fas fa-heart"></i> Inicio</li>
       <li data-section="nosotros"><i class="fas fa-camera"></i> Nosotros</li>
-      <li data-section="recaditos"><i class="fas fa-envelope"></i> Recaditos</li>
+      <li data-section="recaditos"><i class="fas fa-envelope-heart"></i> Recaditos</li>
       <li data-section="musica"><i class="fas fa-music"></i> Música</li>
     </ul>
   </nav>
 
-  <!-- Overlay oscuro cuando el menú está abierto -->
-  <div id="overlay" class="overlay"></div>
+  <!-- Botón hamburguesa (solo visible en móvil) -->
+  <div id="menuBtn" class="menu-btn">
+    <i class="fas fa-bars"></i>
+  </div>
 
-  <!-- Contenido principal -->
+  <!-- Contenido -->
   <main id="content">
 
-    <!-- Sección Inicio -->
+    <!-- INICIO -->
     <section id="home" class="section active">
       <div class="home-content">
-        <h1>Para ti, mi todo</h1>
-        <p class="quote">Aunque estemos lejos, aquí siempre estamos juntitos ♡</p>
-        <div class="heart-animation">♥</div>
+        <div class="big-heart">♥</div>
+        <h1>Para ti, mi vida entera</h1>
+        <p class="quote">Aunque estemos a kilómetros, mi corazón late contigo cada segundo ♡</p>
+        
+        <!-- AQUÍ VA TU FOTO GRANDE (cámbiala por la tuya) -->
+        <div class="hero-image">
+          <img src="img/hero.jpg" alt="Nuestra foto grande"> <!-- ← PON AQUÍ TU FOTO FAVORITA -->
+        </div>
       </div>
     </section>
 
-    <!-- Sección Nosotros (fotos) -->
+    <!-- NOSOTROS (fotos en cuadrícula perfecta) -->
     <section id="nosotros" class="section">
-      <h2>Nuestros momentos favoritos</h2>
+      <h2>Nuestros momentos más bonitos</h2>
       <div class="photo-grid">
-        <img src="img/nosotros.png" alt="Nosotros">
-        <img src="img/nosotros2.png" alt="Nosotros 2">
-        <img src="img/tuuu.png" alt="Tú">
-        <img src="img/nosotros1.png" alt="Juntos">
+        <img src="img/nosotros.png" alt="">
+        <img src="img/nosotros2.png" alt="">
+        <img src="img/tuuu.png" alt="">
+        <img src="img/nosotros1.png" alt="">
         <!-- Añade todas las que quieras -->
       </div>
     </section>
 
-    <!-- Sección Recaditos (mensajes con Firebase) -->
+    <!-- RECADITOS -->
     <section id="recaditos" class="section">
       <h2>Recaditos de amor</h2>
-      <div class="message-form">
-        <input type="text" id="nameInput" placeholder="Tu nombre lindo ♡" value="Mi amor">
-        <textarea id="messageInput" placeholder="Escribe algo hermoso..."></textarea>
-        <button id="sendMessage">Enviar</button>
+      <div class="message-container">
+        <div class="message-form">
+          <input type="text" id="nameInput" placeholder="Tu nombre lindo" value="Mi amor">
+          <textarea id="messageInput" placeholder="Escribe lo que sientas hoy..."></textarea>
+          <button id="sendMessage">Enviar corazoncito</button>
+        </div>
+        <div id="messageList" class="message-list"></div>
       </div>
-      <div id="messageList" class="message-list"></div>
     </section>
 
-    <!-- Sección Música -->
+    <!-- MÚSICA -->
     <section id="musica" class="section">
       <h2>Nuestra banda sonora</h2>
-      <div class="music-player-big">
-        <h3>Ahora suena:</h3>
+      <div class="music-box">
         <p id="currentSong">Eternal Love ♪</p>
         <audio id="mainAudio" controls autoplay loop>
-          <!-- Canción 100% funcional noviembre 2025 -->
           <source src="https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3" type="audio/mpeg">
         </audio>
-        <div class="song-list">
-          <p><strong>Otras canciones:</strong></p>
-          <button onclick="changeSong('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3','Eternal Love')">Eternal Love</button>
-          <button onclick="changeSong('https://www.bensound.com/bensound-music/bensound-romantic.mp3','Romantic Evening')">Romantic Evening</button>
-          <button onclick="changeSong('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-OUR-STORY.mp3','Our Story')">Our Story</button>
+        <div class="playlist">
+          <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3','Eternal Love')">Eternal Love</button>
+          <button onclick="play('https://www.bensound.com/bensound-music/bensound-romantic.mp3','Romantic Evening')">Romantic Evening</button>
+          <button onclick="play('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-OUR-STORY.mp3','Our Story')">Our Story</button>
         </div>
       </div>
     </section>

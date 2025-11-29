@@ -1,151 +1,176 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  color: #ffccd5;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+  color: #ffc8dd;
   overflow-x: hidden;
 }
 
-/* Menú hamburguesa */
-.menu-btn {
+/* Menú lateral IZQUIERDO */
+.side-menu {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
+  left: 0; top: 0; width: 280px; height: 100%;
+  background: rgba(15,15,35,0.95);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  padding: 40px 30px;
+  transition: transform 0.4s ease;
+  box-shadow: 5px 0 30px rgba(0,0,0,0.6);
+}
+.menu-header h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #ff69b4;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.side-menu ul li {
+  padding: 18px 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border-radius: 12px;
+  margin: 8px 0;
+  transition: all 0.3s;
+}
+.side-menu ul li:hover, .side-menu ul li.active {
   background: rgba(255,105,180,0.3);
+  color: white;
+  padding-left: 30px;
+}
+
+/* En móvil: menú oculto y botón hamburguesa */
+@media (max-width: 900px) {
+  .side-menu { transform: translateX(-100%); }
+  .side-menu.active { transform: translateX(0); }
+  #menuBtn { display: block; }
+}
+#menuBtn {
+  display: none;
+  position: fixed;
+  top: 20px; left: 20px;
+  z-index: 1000;
+  background: rgba(255,105,180,0.4);
   padding: 15px;
   border-radius: 50%;
   font-size: 1.8rem;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Menú lateral */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  background: rgba(20,20,40,0.95);
-  backdrop-filter: blur(20px);
-  z-index: 999;
-  transition: right 0.4s ease;
-  padding: 30px;
+/* Contenido principal (con margen para el menú) */
+#content {
+  margin-left: 280px;
+  min-height: 100vh;
 }
-.side-menu.active { right: 0; }
-.menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
-}
-.menu-header h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.2rem;
-  color: #ff69b4;
-}
-.side-menu ul li {
-  padding: 18px 0;
-  font-size: 1.3rem;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  transition: all 0.3s;
-}
-.side-menu ul li:hover {
-  color: #ff69b4;
-  padding-left: 10px;
-}
-
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 998;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-.overlay.active { opacity: 1; pointer-events: all; }
+@media (max-width: 900px) { #content { margin-left: 0; } }
 
 /* Secciones */
 .section {
   display: none;
-  padding: 100px 20px 50px;
+  padding: 80px 40px;
   min-height: 100vh;
-  text-align: center;
 }
 .section.active { display: block; }
 
-/* Inicio */
+/* INICIO */
+.home-content {
+  text-align: center;
+  padding: 100px 20px;
+}
+.big-heart {
+  font-size: 7rem;
+  animation: float 4s infinite;
+  color: #ff69b4;
+}
 .home-content h1 {
   font-family: 'Dancing Script', cursive;
-  font-size: 5rem;
-  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  font-size: 4.5rem;
+  margin: 30px 0;
+  background: linear-gradient(45deg, #ff9ff3, #ff69b4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.quote {
-  font-size: 1.6rem;
-  margin: 30px 0;
-  opacity: 0.9;
-}
-.heart-animation {
-  font-size: 6rem;
-  animation: pulse 2s infinite;
+.quote { font-size: 1.5rem; margin: 30px 0; opacity: 0.9; }
+.hero-image img {
+  width: 90%;
+  max-width: 800px;
+  margin: 60px auto;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(255,105,180,0.4);
 }
 
-/* Fotos */
+/* GALERÍA PERFECTA */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
   max-width: 1400px;
-  margin: 50px auto;
+  margin: 60px auto;
   padding: 0 20px;
 }
-
 .photo-grid img {
   width: 100%;
-  height: 350px;               /* altura fija para que todas queden parejas */
-  object-fit: cover;           /* recorta bonito sin deformar */
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-
-.photo-grid img:hover {
-  transform: translateY(-12px) scale(1.05);
-  box-shadow: 0 25px 50px rgba(255, 105, 180, 0.5);
-}
-
-/* Recaditos y Música (mismo estilo que antes pero más limpio) */
-.message-form, .music-player-big {
-  max-width: 600px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
+  height: 380px;
+  object-fit: cover;
   border-radius: 24px;
-  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  transition: all 0.5s ease;
 }
-#currentSong { font-size: 1.5rem; margin: 20px 0; color: #ff69b4; }
-audio { width: 100%; margin: 20px 0; }
-.song-list button {
-  margin: 8px;
-  padding: 12px 20px;
+.photo-grid img:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(255,105,180,0.6);
+}
+
+/* RECADITOS */
+.message-container { max-width: 800px; margin: 0 auto; }
+.message-form {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  padding: 35px;
+  border-radius: 28px;
+  margin-bottom: 50px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.message-form input, .message-form textarea {
+  width: 100%; padding: 16px; margin: 12px 0; border: none; border-radius: 16px;
+  background: rgba(255,255,255,0.12); color: white; font-size: 1.1rem;
+}
+.message-form textarea { height: 130px; resize: none; }
+.message-form button {
+  background: linear-gradient(45deg, #ff69b4, #ff9ff3);
+  color: white; border: none; padding: 16px 40px; border-radius: 50px;
+  font-weight: bold; cursor: pointer; font-size: 1.1rem;
+}
+.message-list {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.message-list > div {
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 20px;
+  border-left: 5px solid #ff69b4;
+  backdrop-filter: blur(10px);
+}
+.message-list strong { color: #ff9ff3; }
+
+/* MÚSICA */
+.music-box {
+  max-width: 600px; margin: 0 auto; text-align: center;
+}
+#currentSong { font-size: 1.8rem; margin: 20px 0; color: #ff69b4; }
+audio { width: 100%; margin: 30px 0; }
+.playlist button {
+  margin: 10px;
+  padding: 14px 24px;
   background: rgba(255,105,180,0.3);
   border: none;
   border-radius: 50px;
   color: white;
   cursor: pointer;
+  transition: 0.3s;
 }
+.playlist button:hover { background: #ff69b4; transform: scale(1.05); }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
