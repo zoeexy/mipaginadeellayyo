@@ -3,64 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tú y Yo ♥ Para siempre</title>
+  <title>Nuestro rinconcito ♥</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@200;300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
 </head>
 <body>
 
-  <!-- Corazones flotantes -->
-  <canvas id="heartsCanvas"></canvas>
-
-  <!-- Música de fondo (canción hermosa y sin copyright) -->
-  <div class="music-player">
-    <audio id="bgMusic" loop autoplay>
-      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3
-
-" type="audio/mpeg">
-    </audio>
-    <button id="toggleMusic"><i class="fas fa-volume-up"></i></button>
+  <!-- Menú hamburguesa -->
+  <div id="menuBtn" class="menu-btn">
+    <i class="fas fa-bars"></i>
   </div>
 
-  <!-- Header -->
-  <header>
-    <h1>Para mi persona favorita en todo el universo</h1>
-    <p class="subtitle">Aunque estemos a miles de kilómetros… aquí siempre estamos juntitos ♥</p>
-  </header>
-
-  <!-- Galería de fotos -->
-  <section class="gallery">
-    <h2>Nuestras fotitos lindas ♡</h2>
-    <div class="photo-grid">
-      <img src="img/nosotros.png" alt="Nosotros">
-      <img src="img/nosotros2.png" alt="Nosotros Again">
-      <img src="img/tuuu.png" alt="Tuuu">
-      <img src="img/nosotros1.png" alt="Guiño Guiño">
-      <!-- Aquí puedes seguir añadiendo más fotos cuando quieras -->
+  <!-- Menú lateral -->
+  <nav id="sideMenu" class="side-menu">
+    <div class="menu-header">
+      <h2>Nuestro amor</h2>
+      <i id="closeMenu" class="fas fa-times"></i>
     </div>
-  </section>
+    <ul>
+      <li data-section="home"><i class="fas fa-heart"></i> Inicio</li>
+      <li data-section="nosotros"><i class="fas fa-camera"></i> Nosotros</li>
+      <li data-section="recaditos"><i class="fas fa-envelope"></i> Recaditos</li>
+      <li data-section="musica"><i class="fas fa-music"></i> Música</li>
+    </ul>
+  </nav>
 
-  <!-- Mensajes -->
-  <section class="messages">
-    <h2>Nuestros mensajitos de amor</h2>
-    <div class="message-form">
-      <input type="text" id="nameInput" placeholder="Tu nombre o apodo lindo ♡" value="Mi amor 💕"/>
-      <textarea id="messageInput" placeholder="Escribe lo que sientas hoy... te leo siempre"></textarea>
-      <button id="sendMessage">Enviar amor</button>
-    </div>
-    <div id="messageList" class="message-list"></div>
-  </section>
+  <!-- Overlay oscuro cuando el menú está abierto -->
+  <div id="overlay" class="overlay"></div>
 
-  <footer>
-    <p>Hecho con todo el amor del mundo para mi noviecita linda ♡ 2025</p>
-  </footer>
+  <!-- Contenido principal -->
+  <main id="content">
 
-  <!-- Firebase SDK -->
+    <!-- Sección Inicio -->
+    <section id="home" class="section active">
+      <div class="home-content">
+        <h1>Para ti, mi todo</h1>
+        <p class="quote">Aunque estemos lejos, aquí siempre estamos juntitos ♡</p>
+        <div class="heart-animation">♥</div>
+      </div>
+    </section>
+
+    <!-- Sección Nosotros (fotos) -->
+    <section id="nosotros" class="section">
+      <h2>Nuestros momentos favoritos</h2>
+      <div class="photo-grid">
+        <img src="img/nosotros.png" alt="Nosotros">
+        <img src="img/nosotros2.png" alt="Nosotros 2">
+        <img src="img/tuuu.png" alt="Tú">
+        <img src="img/nosotros1.png" alt="Juntos">
+        <!-- Añade todas las que quieras -->
+      </div>
+    </section>
+
+    <!-- Sección Recaditos (mensajes con Firebase) -->
+    <section id="recaditos" class="section">
+      <h2>Recaditos de amor</h2>
+      <div class="message-form">
+        <input type="text" id="nameInput" placeholder="Tu nombre lindo ♡" value="Mi amor">
+        <textarea id="messageInput" placeholder="Escribe algo hermoso..."></textarea>
+        <button id="sendMessage">Enviar</button>
+      </div>
+      <div id="messageList" class="message-list"></div>
+    </section>
+
+    <!-- Sección Música -->
+    <section id="musica" class="section">
+      <h2>Nuestra banda sonora</h2>
+      <div class="music-player-big">
+        <h3>Ahora suena:</h3>
+        <p id="currentSong">Eternal Love ♪</p>
+        <audio id="mainAudio" controls autoplay loop>
+          <!-- Canción 100% funcional noviembre 2025 -->
+          <source src="https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3" type="audio/mpeg">
+        </audio>
+        <div class="song-list">
+          <p><strong>Otras canciones:</strong></p>
+          <button onclick="changeSong('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-ETERNAL-LOVE.mp3','Eternal Love')">Eternal Love</button>
+          <button onclick="changeSong('https://www.bensound.com/bensound-music/bensound-romantic.mp3','Romantic Evening')">Romantic Evening</button>
+          <button onclick="changeSong('https://www.chosic.com/wp-content/uploads/2021/08/CHOSIC-OUR-STORY.mp3','Our Story')">Our Story</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
-
-  <!-- TU CONFIGURACIÓN REAL (ya está puesta) -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAu4QiCYOXhUfyJQyU950FbEqaPgVOvAAM",
@@ -71,11 +101,9 @@
       messagingSenderId: "57740135960",
       appId: "1:57740135960:web:a976cef79bcc265d1ffd6d"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database().ref("messages");
   </script>
-
   <script src="script.js"></script>
 </body>
 </html>
