@@ -1,4 +1,4 @@
-// Mensaje de bienvenida CADA VEZ que entra
+// Bienvenida cada vez
 window.addEventListener('load', () => {
   document.getElementById('welcomeModal').classList.add('active');
 });
@@ -6,7 +6,7 @@ document.getElementById('closeWelcome').onclick = () => {
   document.getElementById('welcomeModal').classList.remove('active');
 };
 
-// Corazones al hacer click
+// Corazones al click
 document.addEventListener('click', e => {
   const h = document.createElement('div');
   h.className = 'heart-click';
@@ -17,9 +17,7 @@ document.addEventListener('click', e => {
   setTimeout(() => h.remove(), 3000);
 });
 
-// SUBIR FOTOS GRATIS
-const photoGrid = document.getElementById('photoGrid');
-
+// SUBIR FOTOS (AHORA SÍ FUNCIONA)
 document.getElementById('addPhotoBtn').onclick = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -28,27 +26,30 @@ document.getElementById('addPhotoBtn').onclick = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const uploadTask = storage.child('fotos/' + Date.now() + '_' + file.name).put(file);
+    const ref = storage.child('fotos/' + Date.now() + '_' + file.name);
+    const uploadTask = ref.put(file);
 
-    uploadTask.on('state_changed', null, error => console.error(error), () => {
-      uploadTask.snapshot.ref.getDownloadURL().then(url => {
-        firebase.database().ref('galeria').push(url);
+    uploadTask.then(snapshot => {
+      snapshot.ref.getDownloadURL().then(url => {
+        galeriaDB.push(url);  // Guarda la URL en la base de datos
       });
-    });
+    }).catch(err => console.error("Error subiendo foto:", err));
   };
   input.click();
 };
 
-// CARGAR FOTOS DE LA GALERÍA
-firebase.database().ref('galeria').on('child_added', snap => {
+// CARGAR FOTOS NUEVAS
+galeriaDB.on('child_added', snap => {
   const url = snap.val();
-  const img = document.createElement('img');
-  img.src = url;
-  img.alt = "Nuestra foto";
-  photoGrid.prepend(img);
+  if (url && !document.querySelector(`img[src="${url}"]`)) { // evita duplicados
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = "Nuestra foto";
+    document.getElementById('photoGrid').prepend(img);
+  }
 });
 
-// Menú
+// Menú, mensajes y música (igual)
 document.getElementById('menuBtn').onclick = () => document.getElementById('sideMenu').classList.toggle('active');
 document.querySelectorAll('.side-menu li').forEach(item => {
   item.onclick = () => {
@@ -60,11 +61,10 @@ document.querySelectorAll('.side-menu li').forEach(item => {
   };
 });
 
-// Mensajes
 db.limitToLast(50).on('child_added', s => {
   const m = s.val();
   const d = document.createElement('div');
-  d.innerHTML = `<strong>${m.name} ♡</strong><p>${m.text.replace(/\n/g,'<br>')}</p><small>${new Date(m.date).toLocaleString('es-ES')}</small>`;
+  d.innerHTML = `<strong>${m.name} </strong><p>${m.text.replace(/\n/g,'<br>')}</p><small>${new Date(m.date).toLocaleString('es-ES')}</small>`;
   document.getElementById('messageList').prepend(d);
 });
 
@@ -74,7 +74,6 @@ document.getElementById('sendMessage').onclick = () => {
   if(t) { db.push({name:n, text:t, date:Date.now()}); document.getElementById('messageInput').value = ""; }
 };
 
-// Música
 function play(u,t){ 
   const a = document.getElementById('mainAudio'); 
   a.src = u; a.play(); 

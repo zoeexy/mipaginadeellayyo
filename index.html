@@ -36,7 +36,7 @@
   <div id="menuBtn" class="menu-btn">Menu</div>
 
   <main id="content">
-    <!-- INICIO -->
+    <!-- INICIO (con tu foto grande) -->
     <section id="home" class="section active">
       <div class="home-content">
         <div class="big-heart">♥</div>
@@ -48,7 +48,7 @@
       </div>
     </section>
 
-    <!-- NOSOTROS + BOTÓN PARA SUBIR FOTOS -->
+    <!-- NOSOTROS (tus fotos antiguas + botón + nuevas fotos) -->
     <section id="nosotros" class="section">
       <div class="container">
         <h2>Nuestros momentos más bonitos</h2>
@@ -60,7 +60,12 @@
         </div>
 
         <div class="photo-grid" id="photoGrid">
-          <!-- Las fotos subidas aparecerán aquí automáticamente -->
+          <!-- TUS FOTOS ANTIGUAS (vuelven) -->
+          <img src="img/nosotros.png" alt="Nosotros">
+          <img src="img/nosotros2.png" alt="Nosotros 2">
+          <img src="img/tuuu.png" alt="Tú">
+          <img src="img/nosotros1.png" alt="Juntos">
+          <!-- Aquí irán también las nuevas que suban -->
         </div>
       </div>
     </section>
@@ -97,7 +102,7 @@
     </section>
   </main>
 
-  <!-- Firebase (App + Database + Storage) -->
+  <!-- Firebase completo -->
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-storage-compat.js"></script>
@@ -114,7 +119,8 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database().ref("messages");
-    const storage = firebase.storage().ref("fotos");
+    const galeriaDB = firebase.database().ref("galeria");
+    const storage = firebase.storage().ref();
   </script>
 
   <script src="script.js"></script>
