@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tú y Yo ♥ Para siempre</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- Música de fondo -->
+  <div class="music-player">
+    <audio id="bgMusic" loop>
+      <source src="https://www.soundjay.com/free-music/sounds/romantic-background.mp3" type="audio/mpeg">
+      <!-- Si quieres otra canción más bonita, te dejo opciones abajo -->
+    </audio>
+    <button id="toggleMusic"><i class="fas fa-play"></i></button>
+  </div>
+
+  <!-- Header con título bonito -->
+  <header>
+    <h1>Para mi persona favorita en todo el universo</h1>
+    <p class="subtitle">Aunque estemos a kilómetros, aquí siempre estamos juntitos ♥</p>
+  </header>
+
+  <!-- Galería de fotos -->
+  <section class="gallery">
+    <h2>Nuestros mejores momentos (y partidas épicas)</h2>
+    <div class="photo-grid">
+      <!-- Aquí pones tus fotos, solo cambia el src -->
+      <img src="img/foto1.jpg" alt="Nosotros">
+      <img src="img/foto2.jpg" alt="Jugando">
+      <img src="img/foto3.jpg" alt="Captura de juego">
+      <img src="img/foto4.jpg" alt="Más amor">
+      <!-- Agrega todas las que quieras -->
+    </div>
+  </section>
+
+  <!-- Sección de mensajitos -->
+  <section class="messages">
+    <h2>Mensajes de amor que nunca se borran</h2>
+    <div class="message-form">
+      <input type="text" id="nameInput" placeholder="Tu nombre (o apodo lindo)" value="Amor 💕"/>
+      <textarea id="messageInput" placeholder="Escribe lo que sientas hoy..."></textarea>
+      <button id="sendMessage">Enviar corazoncito</button>
+    </div>
+
+    <div id="messageList" class="message-list"></div>
+  </section>
+
+  <footer>
+    <p>Hecho con todo el amor del mundo ♡ 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
